@@ -1,0 +1,964 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Путешествия по неизведанным уголкам Земли</title>
+
+    <!-- Метатеги (описание и ключевые слова) -->
+    <meta name="description" content="Откройте забытые уголки планеты: маршруты без толп туристов, живые культуры, дикая природа и честные советы." />
+    <meta name="keywords" content="путешествия, неизведанные места, экотуризм, треккинг, экспедиции, безлюдные пляжи, культурные традиции, горные тропы, дикие острова" />
+    <meta name="theme-color" content="#2E8B57" />
+
+    <!-- Favicon (SVG через data URI) -->
+    <link rel="icon" type="image/svg+xml"
+          href='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%232E8B57"/><circle cx="16" cy="16" r="9" fill="%23E8C07D"/><path d="M16 8l2.5 4.5L23 13l-4 3 1.5 5-4.5-3-4.5 3 1.5-5-4-3 4.5-0.5L16 8z" fill="%234A90E2" opacity="0.9"/></svg>' />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-9jFjWHEl4Oq0xQy6HqzM7u8K4v3YQwHnFqP1wKcIuJmS4QH3Dk3X0mK3M3cU2EwD7dZpQyI7oAqEwH6o7i5YwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Стили (встроенные) -->
+    <style>
+        :root {
+            --earth-green: #2E8B57;
+            --sand-beige: #E8C07D;
+            --sky-blue: #4A90E2;
+            --stone-gray: #8A8A8A;
+            --white: #FFFFFF;
+            --page: #F8F8F8;
+            --text: #333333;
+            --muted: #555555;
+            --radius: 12px;
+            --shadow: 0 6px 20px rgba(0,0,0,.08);
+            --forest-dark: #1A5D3A;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+            background: var(--page);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header (зеленый земли) */
+        header {
+            background: linear-gradient(135deg, var(--earth-green), var(--forest-dark));
+            color: var(--white);
+            padding: 18px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .menu {
+            display: flex;
+            gap: 16px
+        }
+
+        .menu-link {
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+            .menu-link:hover {
+                background: rgba(255,255,255,.25);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        /* Hero секция с фоновым изображением */
+        .hero-section {
+            background: linear-gradient(rgba(46, 139, 87, 0.85), rgba(26, 93, 58, 0.9)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+        }
+
+            .hero-section h1 {
+                font-size: 48px;
+                margin-bottom: 25px;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+                font-weight: 800;
+            }
+
+            .hero-section p {
+                font-size: 22px;
+                max-width: 850px;
+                margin: 0 auto 40px;
+                opacity: 0.95;
+                line-height: 1.7;
+            }
+
+        /* Slider (песочный) с изображениями */
+        .slider {
+            background: linear-gradient(to right, #F5E6D3, var(--sand-beige));
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            min-height: 450px;
+        }
+
+        .nav-btn {
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,.75);
+            color: #5C4B2E;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+            .nav-btn:hover {
+                background: rgba(255,255,255,.95);
+                transform: scale(1.1);
+                box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            }
+
+        .slide {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            box-shadow: var(--shadow);
+            max-width: 1100px;
+            width: 100%;
+            border: 1px solid rgba(232, 192, 125, 0.3);
+            min-height: 350px;
+        }
+
+        .slide-image {
+            width: 350px;
+            height: 300px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+            .slide-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+            .slide-image:hover img {
+                transform: scale(1.08);
+            }
+
+        .slide-text {
+            max-width: 650px;
+            flex-grow: 1;
+        }
+
+            .slide-text h1 {
+                margin: 0 0 20px;
+                font-size: 32px;
+                color: #2E8B57;
+                line-height: 1.3;
+            }
+
+            .slide-text p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 18px;
+                line-height: 1.7;
+            }
+
+        /* Два инфо-блока (песочный) с изображениями */
+        .info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 35px;
+            padding: 50px 20px;
+            background: var(--page);
+        }
+
+        @media(min-width:860px) {
+            .info {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .info-block {
+            background: linear-gradient(135deg, #FFF8ED, #F5E6D3);
+            padding: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(232, 192, 125, 0.3);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+            .info-block:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            }
+
+        .info-image {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+            .info-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+        .info-block:hover .info-image img {
+            transform: scale(1.1);
+        }
+
+        .info-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-thumb {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            background: var(--sand-beige);
+            display: grid;
+            place-items: center;
+            color: #5C4B2E;
+            font-size: 26px;
+            margin-bottom: 20px;
+            border: 3px solid rgba(255,255,255,0.6);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .info-content h3 {
+            margin: 0 0 15px;
+            font-size: 24px;
+            color: #2E8B57;
+            line-height: 1.3;
+        }
+
+        .info-content p {
+            margin: 0;
+            color: #5C4B2E;
+            line-height: 1.7;
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        /* Карточки направлений (зеленый земли) с изображениями */
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 35px;
+            padding: 50px 20px;
+            background: var(--page);
+        }
+
+        @media(min-width:860px) {
+            .cards {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--earth-green), var(--forest-dark));
+            color: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+        .card-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+        .card:hover .card-image img {
+            transform: scale(1.12);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,.9);
+            color: #2E8B57;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 15px;
+            z-index: 1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .card-content h3 {
+                margin: 0 0 18px;
+                font-size: 26px;
+                color: #fff;
+                line-height: 1.3;
+            }
+
+            .card-content p {
+                margin: 0 0 25px;
+                opacity: .95;
+                line-height: 1.7;
+                font-size: 16px;
+                flex-grow: 1;
+            }
+
+        .card-link {
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            gap: 12px;
+            align-items: center;
+            background: rgba(255,255,255,.2);
+            border: 1px solid rgba(255,255,255,.3);
+            padding: 14px 24px;
+            border-radius: 12px;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+            .card-link:hover {
+                background: rgba(255,255,255,.3);
+                transform: translateX(8px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        /* Галерея изображений */
+        .gallery {
+            padding: 50px 20px;
+            background: #f0f7f0;
+        }
+
+            .gallery h2 {
+                text-align: center;
+                font-size: 36px;
+                color: var(--earth-green);
+                margin-bottom: 40px;
+                font-weight: 800;
+            }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 250px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+            .gallery-item:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            padding: 25px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .gallery-overlay p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        /* Footer (небесный синий) */
+        footer {
+            background: linear-gradient(135deg, var(--sky-blue), #2C6FB7);
+            color: #fff;
+            padding: 50px 20px 25px;
+            margin-top: 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 40px;
+        }
+
+        @media(min-width:768px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr
+            }
+        }
+
+        .footer-column h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            padding-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .footer-column p, .footer-column a {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+            .footer-column a:hover {
+                color: #fff;
+                transform: translateX(5px);
+            }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+            .footer-social a {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.15);
+                border: 1px solid rgba(255,255,255,0.25);
+                display: grid;
+                place-items: center;
+                font-size: 22px;
+                transition: all 0.3s ease;
+            }
+
+                .footer-social a:hover {
+                    background: rgba(255,255,255,0.25);
+                    transform: translateY(-5px);
+                }
+
+        .credit {
+            text-align: center;
+            opacity: 0.9;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 16px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background: var(--sand-beige);
+            color: #5C4B2E;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+            .btn:hover {
+                background: #FFD54F;
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+        /* Адаптивность */
+        @media(max-width:768px) {
+            header {
+                padding: 15px;
+            }
+
+            .menu {
+                gap: 12px;
+            }
+
+            .menu-link {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .logo-image {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero-section {
+                padding: 70px 20px;
+            }
+
+                .hero-section h1 {
+                    font-size: 36px;
+                }
+
+                .hero-section p {
+                    font-size: 18px;
+                }
+
+            .slider {
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .slide {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .slide-image {
+                width: 100%;
+                height: 220px;
+            }
+
+            .slide-text h1 {
+                font-size: 26px;
+            }
+
+            .slide-text p {
+                font-size: 16px;
+            }
+
+            .info, .cards, .gallery {
+                padding: 30px 20px;
+            }
+
+                .gallery h2 {
+                    font-size: 28px;
+                    margin-bottom: 25px;
+                }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-content {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (без заголовка) -->
+    <header>
+        <div class="logo">
+            <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                 alt="Компас" class="logo-image">
+        </div>
+        <nav class="menu" aria-label="Главное меню">
+            <a href="#hero" class="menu-link" title="Главная"><i class="fa-solid fa-home"></i></a>
+            <a href="#routes" class="menu-link" title="Маршруты"><i class="fa-solid fa-route"></i></a>
+            <a href="#guide" class="menu-link" title="Гид"><i class="fa-solid fa-book-open"></i></a>
+            <a href="#gallery" class="menu-link" title="Галерея"><i class="fa-solid fa-images"></i></a>
+            <a href="#contact" class="menu-link" title="Контакты"><i class="fa-solid fa-envelope"></i></a>
+        </nav>
+    </header>
+
+    <!-- Hero секция -->
+    <section class="hero-section" id="hero">
+        <h1>Путешествия по неизведанным уголкам Земли</h1>
+        <p>Откройте для себя места, куда не ступала нога массового туриста. Дикая природа, древние культуры и незабываемые приключения ждут вас. Мы поможем вам увидеть мир таким, каким его видели первооткрыватели.</p>
+        <a href="#routes" class="btn">Начать путешествие</a>
+    </section>
+
+    <main>
+        <!-- Slider -->
+        <section class="slider" aria-label="Слайдер направлений">
+            <button class="nav-btn" id="prev" aria-label="Предыдущий"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slide">
+                <div class="slide-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Горный пейзаж">
+                </div>
+                <div class="slide-text">
+                    <h1>Откройте забытые уголки планеты</h1>
+                    <p>Путешествуйте туда, где нет туристов — только природа, культура и настоящие открытия. Исследуйте места, где время остановилось, а природа сохранила свою первозданную красоту. Наши гиды помогут вам увидеть мир таким, каким его видели первооткрыватели.</p>
+                </div>
+            </div>
+            <button class="nav-btn" id="next" aria-label="Следующий"><i class="fa-solid fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Инфо-блоки -->
+        <section class="info" id="guide">
+            <article class="info-block">
+                <div class="info-image">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Горный маршрут">
+                </div>
+                <div class="info-content">
+                    <div class="info-thumb"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Маршруты вне шаблонов</h3>
+                    <p>Гид по регионам, куда не водят массовые туры: горные тропы, дикие острова, малые города и скрытые долины. Только проверенные маршруты, составленные опытными путешественниками.</p>
+                </div>
+            </article>
+            <article class="info-block">
+                <div class="info-image">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Экотуризм">
+                </div>
+                <div class="info-content">
+                    <div class="info-thumb"><i class="fa-solid fa-shield-heart"></i></div>
+                    <h3>Безопасность и этика</h3>
+                    <p>Проверенные контакты, устойчивые практики и уважение к локальным традициям. Мы учим путешествовать ответственно, сохраняя природу и поддерживая местные сообщества.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Карточки направлений -->
+        <section class="cards" id="routes">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Памир, Таджикистан">
+                    <span class="card-tag"><i class="fa-solid fa-mountain-sun"></i> Горные тропы</span>
+                </div>
+                <div class="card-content">
+                    <h3>Памир, Таджикистан</h3>
+                    <p>Древние перевалы Великого Шелкового пути, ночёвки у местных семей в высокогорных кишлаках, виды, от которых перехватывает дыхание. Экспедиция для тех, кто ищет настоящую свободу и готов к настоящим испытаниям.</p>
+                    <a class="card-link" href="#"><i class="fa-solid fa-arrow-right"></i> Узнать детали маршрута</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Папуа — Новая Гвинея">
+                    <span class="card-tag"><i class="fa-solid fa-island-tropical"></i> Дикие острова</span>
+                </div>
+                <div class="card-content">
+                    <h3>Папуа — Новая Гвинея</h3>
+                    <p>Племенные деревни, где сохранились древние ритуалы, вулканические гряды и пляжи без следов человека — экспедиция для смелых и любознательных. Уникальная культура и нетронутая природа ждут вас.</p>
+                    <a class="card-link" href="#"><i class="fa-solid fa-arrow-right"></i> Узнать детали маршрута</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея -->
+        <section class="gallery" id="gallery">
+            <h2>Неизведанные места мира</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Дикая природа">
+                    <div class="gallery-overlay">
+                        <h4>Дикие леса Амазонии</h4>
+                        <p>Самый большой тропический лес на планете, дом для тысяч уникальных видов</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Пустыня">
+                    <div class="gallery-overlay">
+                        <h4>Пустыня Намиб</h4>
+                        <p>Самая древняя пустыня в мире с уникальными дюнами и адаптированной флорой</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Пещеры">
+                    <div class="gallery-overlay">
+                        <h4>Пещеры Вайтомо</h4>
+                        <p>Волшебный подземный мир, освещенный тысячами светлячков</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Арктика">
+                    <div class="gallery-overlay">
+                        <h4>Арктические просторы</h4>
+                        <p>Царство льда, северного сияния и уникальной полярной фауны</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>О нас</h3>
+            <p>Мы — команда опытных путешественников, которые открывают для вас самые удивительные и малоизвестные уголки планеты. Наша миссия — показать мир таким, каким его видят первооткрыватели.</p>
+            <div class="footer-social">
+                <a href="#" title="Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/50px-Instagram_icon.png" alt="Instagram" width="50" height="50">
+                </a>
+                <a href="#" title="YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/50px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" width="50" height="50">
+                </a>
+                <a href="#" title="Telegram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/50px-Telegram_logo.svg.png" alt="Telegram" width="50" height="50">
+                </a>
+                <a href="#" title="ВКонтакте">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/VK.com-logo.svg/50px-VK.com-logo.svg.png" alt="ВКонтакте" width="50" height="50">
+                </a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Маршруты</h3>
+            <a href="#"><i class="fa-solid fa-mountain"></i> Горные экспедиции</a>
+            <a href="#"><i class="fa-solid fa-water"></i> Дикие острова</a>
+            <a href="#"><i class="fa-solid fa-sun"></i> Пустынные тропы</a>
+            <a href="#"><i class="fa-solid fa-snowflake"></i> Арктические путешествия</a>
+            <a href="#"><i class="fa-solid fa-tree"></i> Джунгли и тропики</a>
+        </div>
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <p><i class="fa-solid fa-map-marker-alt"></i> Москва, ул. Путешественников, 15</p>
+            <p><i class="fa-solid fa-phone"></i> +7 (999) 123-45-67</p>
+            <p><i class="fa-solid fa-envelope"></i> info@unknown-earth.ru</p>
+            <p><i class="fa-solid fa-clock"></i> Пн-Пт: 10:00-19:00</p>
+        </div>
+    </div>
+    <div class="credit">
+        © 2025 Неизведанная Земля · Путешествия вне шаблонов · Все изображения взяты из Unsplash
+    </div>
+</footer>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Маршруты</h3>
+                <a href="#"><i class="fa-solid fa-mountain"></i> Горные экспедиции</a>
+                <a href="#"><i class="fa-solid fa-water"></i> Дикие острова</a>
+                <a href="#"><i class="fa-solid fa-sun"></i> Пустынные тропы</a>
+                <a href="#"><i class="fa-solid fa-snowflake"></i> Арктические путешествия</a>
+                <a href="#"><i class="fa-solid fa-tree"></i> Джунгли и тропики</a>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <p><i class="fa-solid fa-map-marker-alt"></i> Москва, ул. Путешественников, 15</p>
+                <p><i class="fa-solid fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fa-solid fa-envelope"></i> info@unknown-earth.ru</p>
+                <p><i class="fa-solid fa-clock"></i> Пн-Пт: 10:00-19:00</p>
+            </div>
+        </div>
+        <div class="credit">
+            © 2025 Неизведанная Земля · Путешествия вне шаблонов · Все изображения взяты из Unsplash
+        </div>
+    </footer>
+
+    <!-- Скрипт (простой слайдер) -->
+    <script>
+        const slides = [
+            {
+                image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Откройте забытые уголки планеты',
+                text: 'Путешествуйте туда, где нет туристов — только природа, культура и настоящие открытия. Исследуйте места, где время остановилось, а природа сохранила свою первозданную красоту. Наши гиды помогут вам увидеть мир таким, каким его видели первооткрыватели.'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Тропы без толп',
+                text: 'Маршруты по горам, где слышно только ветер и шаги по камням. Где карты уступают интуиции, а компас становится лучшим другом. Мы проведем вас по тропам, известным только местным жителям и опытным альпинистам.'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1513326738677-b964603b136d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                title: 'Острова вне карты',
+                text: 'Берега, где следы — только ваши. Море, кораллы и тишина. Места, куда не долетает шум цивилизации. Откройте для себя архипелаги, о которых не пишут в туристических путеводителях.'
+            }
+        ];
+
+        let i = 0;
+        const slideImage = document.querySelector('.slide-image img');
+        const titleEl = document.querySelector('.slide-text h1');
+        const textEl = document.querySelector('.slide-text p');
+
+        function render(idx) {
+            const s = slides[idx];
+            slideImage.src = s.image;
+            slideImage.alt = s.title;
+            titleEl.textContent = s.title;
+            textEl.textContent = s.text;
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            i = (i - 1 + slides.length) % slides.length;
+            render(i);
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            i = (i + 1) % slides.length;
+            render(i);
+        });
+
+        setInterval(() => {
+            i = (i + 1) % slides.length;
+            render(i);
+        }, 7000);
+
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Инициализация слайдера
+        render(0);
+
+        // Анимация элементов при прокрутке
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Добавляем анимацию к элементам
+        document.querySelectorAll('.info-block, .card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Добавляем анимацию к слайдеру
+        const slideElement = document.querySelector('.slide');
+        slideElement.style.opacity = '0';
+        slideElement.style.transform = 'translateX(20px)';
+        slideElement.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+
+        setTimeout(() => {
+            slideElement.style.opacity = '1';
+            slideElement.style.transform = 'translateX(0)';
+        }, 300);
+    </script>
+</body>
+</html>
